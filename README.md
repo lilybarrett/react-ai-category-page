@@ -1,85 +1,85 @@
 ## Take-Home Assignment: “Category Page” React App
 
 **Timebox:** No more than **2 hours**
-**Goal:** Build a simple React app that displays a category page of products, with **pagination**, **sorting**, **basic accessibility (ADA-friendly)**, and **mobile-first responsive design**, using any tooling you like. You may use AI-driven code assistance (e.g. GitHub Copilot, ChatGPT) to speed things up.
+**Goal:** Build a simple **TypeScript** React app that displays a category page of products, with **pagination**, **sorting**, **basic accessibility (ADA-friendly)**, and **mobile-first responsive design**, using any tooling you like. Feel free to use AI-driven code assistance (e.g. Copilot, ChatGPT) to speed things up.
 
 ### 📋 Requirements
 
-1. **Data**
+1. **Starter Data**
 
-   * Use a hard-coded JSON array (in code) of at least 20 products.
-   * Each product should have:
+   * We’ll include a `products.json` file (with 20+ items) in the repo root for you to import.
+   * Each product entry has:
 
-     * `id` (string or number)
-     * `name` (string)
-     * `price` (number)
-     * `imageUrl` (string – can be placeholder)
+     ```ts
+     interface Product {
+       id: number;
+       name: string;
+       price: number;
+       imageUrl: string;
+     }
+     ```
 
 2. **UI, Accessibility & Responsiveness**
 
-   * A **Category** page that:
+   * **Category** page that:
 
      * Lists products in a grid or list.
-     * Shows product `name`, `price`, and `image`.
+     * Shows `name`, `price`, and `image`.
    * **Pagination**:
 
-     * Show 5 items per page.
-     * “Previous” and “Next” buttons (disabled at ends).
-     * Ensure buttons are keyboard-focusable and have ARIA labels.
+     * 5 items per page, with “Previous”/“Next” buttons (disabled at ends).
+     * Buttons must be keyboard-focusable and have ARIA labels.
    * **Sorting**:
 
-     * A control (dropdown or buttons) to sort by `price` (asc/desc) and `name` (A→Z/Z→A).
+     * Control (dropdown/buttons) to sort by `price` (asc/desc) and `name` (A→Z/Z→A).
      * Use semantic HTML and proper labels.
    * **Images**:
 
-     * Provide meaningful `alt` text for each product image.
+     * Provide meaningful `alt` text.
    * **Keyboard Navigation**:
 
-     * All interactive elements (pagination, sort controls) must be operable via keyboard.
+     * All interactive elements must be operable via keyboard.
    * **Mobile-First Responsive Design**:
 
-     * Layout should adapt gracefully from narrow (mobile) to wide (desktop) viewports.
-     * Start styling for a small screen by default, then enhance for larger breakpoints.
+     * Default styles for small screens, with enhancements at larger breakpoints.
 
 3. **Tech & Tooling**
 
-   * Use **React** (Create React App, Vite, Next.js, etc.).
-   * **Styling:** Do **not** use Tailwind, Bootstrap, or similar. Instead, use Vanilla Extract (i.e., camelCase vanilla CSS) or plain CSS modules.
-   * You’re encouraged to leverage AI-powered tools (Copilot, ChatGPT) for boilerplate or logic.
+   * **TypeScript** + React (Create React App, Vite, or Next.js).
+   * **Styling:** No Tailwind/Bootstrap; use Vanilla Extract (camelCase CSS) or CSS modules.
+   * AI tools (Copilot/ChatGPT) are encouraged for boilerplate or logic.
 
 4. **Project Setup & Run**
 
-   * Include a **README** with:
-
-     * How to install (`npm install` / `yarn install`)
-     * How to start (`npm start` / `yarn dev`)
-   * The app should spin up locally with **one** command after install.
+   * Provide a **README** with install (`npm install` / `yarn install`) and start (`npm start` / `yarn dev`) instructions.
+   * App must spin up locally with one command after install.
 
 5. **Deliverable**
 
-   * We will provide a GitHub repository link for you to **fork**.
-   * Commit and push your solution to your fork.
-   * No need to deploy—local run is fine.
+   * We’ll share a GitHub repo link for you to **fork** (includes `products.json`).
+   * Commit & push to your fork. Local run only—no deployment needed.
 
 ---
 
 ## Evaluation Criteria
 
-| Area                    | What We’ll Look For                                                                                 |
-| ----------------------- | --------------------------------------------------------------------------------------------------- |
-| **Functionality**       | Pagination works; sorting toggles order correctly; keyboard & ARIA labels present.                  |
-| **Accessibility (ADA)** | Semantic HTML; proper `alt` text; all controls operable via keyboard; ARIA attributes where needed. |
-| **Responsiveness**      | Mobile-first approach implemented; layout adapts smoothly across breakpoints.                       |
-| **Code Quality**        | Clean, modular, easy to read.                                                                       |
-| **Project Setup**       | One-step install & run; clear README.                                                               |
-| **Use of AI**           | Judicious use of AI to accelerate—not to obscure.                                                   |
-| **UX & Styling**        | Basic, consistent styling (doesn’t need to be fancy).                                               |
+| Area                    | What We’ll Look For                                               |
+| ----------------------- | ----------------------------------------------------------------- |
+| **Functionality**       | Pagination; sorting; keyboard & ARIA labels.                      |
+| **Accessibility (ADA)** | Semantic HTML; `alt` text; keyboard operability; ARIA attributes. |
+| **Responsiveness**      | Mobile-first approach; smooth layout across breakpoints.          |
+| **TypeScript Usage**    | Proper types/interfaces; no `any` hacks; clean TS idioms.         |
+| **Code Quality**        | Clean, modular, readable.                                         |
+| **Project Setup**       | One-step install & run; clear README.                             |
+| **Use of AI**           | Judicious AI use to accelerate—not obscure your understanding.    |
+| **UX & Styling**        | Basic, consistent styling (doesn’t need to be fancy).             |
 
 ---
 
-> **Next steps:**
-> In the follow-up pairing session, we’ll expand this app together by:
+> **Next steps (pairing session):**
 >
-> 1. **Enhancing the UI** — adding filters, product detail modals, and design polish.
-> 2. **Deepening Accessibility (ADA)** — implementing focus management, landmark roles, and advanced ARIA patterns where needed.
-> 3. **Refactoring for Scalability** — abstracting components, introducing context or state management, and integrating real data fetching.
+> 1. **Enhance the UI** (filters, modals, polish)
+> 2. **Deepen Accessibility** (focus management, landmarks, ARIA patterns)
+> 3. **Refactor for Scale** (state management, real data fetching)
+
+Feel free to review `products.json` and let us know if you have any questions before you start!
