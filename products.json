@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "12 oz Grass-Fed Ribeye Steak",
+    "price": 24.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Ribeye+Steak"
+  },
+  {
+    "id": 2,
+    "name": "8 oz Grass-Fed Filet Mignon",
+    "price": 29.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Filet+Mignon"
+  },
+  {
+    "id": 3,
+    "name": "1 lb Grass-Fed Ground Beef",
+    "price": 8.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Ground+Beef"
+  },
+  {
+    "id": 4,
+    "name": "1 lb Free-Range Chicken Thighs",
+    "price": 9.49,
+    "imageUrl": "https://via.placeholder.com/200?text=Chicken+Thighs"
+  },
+  {
+    "id": 5,
+    "name": "1 lb Free-Range Chicken Breasts",
+    "price": 10.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Chicken+Breasts"
+  },
+  {
+    "id": 6,
+    "name": "Wild-Caught Salmon Fillet",
+    "price": 18.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Salmon+Fillet"
+  },
+  {
+    "id": 7,
+    "name": "3 lb Family Variety Pack",
+    "price": 79.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Variety+Pack"
+  },
+  {
+    "id": 8,
+    "name": "4 ct Boneless Pork Chops",
+    "price": 14.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Pork+Chops"
+  },
+  {
+    "id": 9,
+    "name": "1 lb Italian Sausage Links",
+    "price": 11.49,
+    "imageUrl": "https://via.placeholder.com/200?text=Italian+Sausage"
+  },
+  {
+    "id": 10,
+    "name": "12 oz Wagyu Flat Iron Steak",
+    "price": 34.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Wagyu+Flat+Iron"
+  },
+  {
+    "id": 11,
+    "name": "10 ct Chicken Tenders",
+    "price": 12.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Chicken+Tenders"
+  },
+  {
+    "id": 12,
+    "name": "1 lb Turkey Breast",
+    "price": 13.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Turkey+Breast"
+  },
+  {
+    "id": 13,
+    "name": "4 ct Beef Hot Dogs",
+    "price": 9.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Beef+Hot+Dogs"
+  },
+  {
+    "id": 14,
+    "name": "1 lb Uncured Pork Bacon",
+    "price": 12.49,
+    "imageUrl": "https://via.placeholder.com/200?text=Pork+Bacon"
+  },
+  {
+    "id": 15,
+    "name": "6 ct Beef Kielbasa",
+    "price": 11.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Beef+Kielbasa"
+  },
+  {
+    "id": 16,
+    "name": "1 lb Lamb Chops",
+    "price": 22.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Lamb+Chops"
+  },
+  {
+    "id": 17,
+    "name": "1 lb Tail-On Shrimp",
+    "price": 19.49,
+    "imageUrl": "https://via.placeholder.com/200?text=Tail-On+Shrimp"
+  },
+  {
+    "id": 18,
+    "name": "4 ct Bratwurst Links",
+    "price": 10.99,
+    "imageUrl": "https://via.placeholder.com/200?text=Bratwurst"
+  },
+  {
+    "id": 19,
+    "name": "12 oz Black Angus NY Strip",
+    "price": 27.99,
+    "imageUrl": "https://via.placeholder.com/200?text=NY+Strip"
+  },
+  {
+    "id": 20,
+    "name": "1 lb Breakfast Sausage Patties",
+    "price": 8.49,
+    "imageUrl": "https://via.placeholder.com/200?text=Breakfast+Sausage"
+  }
+]
