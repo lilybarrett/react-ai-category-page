@@ -7,7 +7,7 @@
 
 1. **Starter Data**
 
-   * We’ll include a `products.json` file (with 20+ items) in the repo root for you to import.
+   * We’ll include a `products.json` file (with 20 items) in the repo root for you to import.
    * Each product entry has:
 
      ```ts
@@ -46,7 +46,9 @@
 3. **Tech & Tooling**
 
    * **TypeScript** + React (Create React App, Vite, or Next.js).
-   * **Styling:** No Tailwind/Bootstrap; use Vanilla Extract (camelCase CSS) or CSS modules.
+   * **Styling (Required):** Use **Vanilla Extract** for all CSS.
+
+     * **Do not** use Tailwind, Bootstrap, or other utility/CSS frameworks.
    * AI tools (Copilot/ChatGPT) are encouraged for boilerplate or logic.
 
 4. **Project Setup & Run**
@@ -63,16 +65,17 @@
 
 ## Evaluation Criteria
 
-| Area                    | What We’ll Look For                                               |
-| ----------------------- | ----------------------------------------------------------------- |
-| **Functionality**       | Pagination; sorting; keyboard & ARIA labels.                      |
-| **Accessibility (ADA)** | Semantic HTML; `alt` text; keyboard operability; ARIA attributes. |
-| **Responsiveness**      | Mobile-first approach; smooth layout across breakpoints.          |
-| **TypeScript Usage**    | Proper types/interfaces; no `any` hacks; clean TS idioms.         |
-| **Code Quality**        | Clean, modular, readable.                                         |
-| **Project Setup**       | One-step install & run; clear README.                             |
-| **Use of AI**           | Judicious AI use to accelerate—not obscure your understanding.    |
-| **UX & Styling**        | Basic, consistent styling (doesn’t need to be fancy).             |
+| Area                             | What We’ll Look For                                                          |
+| -------------------------------- | ---------------------------------------------------------------------------- |
+| **Functionality**                | Pagination; sorting; keyboard & ARIA labels.                                 |
+| **Accessibility (ADA)**          | Semantic HTML; `alt` text; keyboard operability; ARIA attributes.            |
+| **Responsiveness**               | Mobile-first approach; smooth layout across breakpoints.                     |
+| **TypeScript Usage**             | Proper types/interfaces; no `any` hacks; clean TS idioms.                    |
+| **Styling with Vanilla Extract** | Effective use of Vanilla Extract for component styling; no other frameworks. |
+| **Code Quality**                 | Clean, modular, readable.                                                    |
+| **Project Setup**                | One-step install & run; clear README.                                        |
+| **Use of AI**                    | Judicious AI use to accelerate—not obscure your understanding.               |
+| **UX & Polish**                  | Consistent, accessible, and responsive design (doesn’t need to be fancy).    |
 
 ---
 
