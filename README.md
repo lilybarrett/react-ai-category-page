@@ -32,7 +32,7 @@
 3. **Tech & Tooling**
 
    * Use **React** (Create React App, Vite, Next.js, etc.).
-   * Any CSS or component library is fine (Tailwind, MUI, Bootstrap, etc.).
+   * Styling: Do not use Tailwind, Bootstrap, or similar. Instead, use Vanilla Extract (i.e., camelCase vanilla CSS) or plain CSS modules.
    * You’re encouraged to leverage AI-powered tools (Copilot, ChatGPT) for boilerplate or logic.
 
 4. **Project Setup & Run**
