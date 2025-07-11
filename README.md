@@ -3,7 +3,7 @@
 **Timebox:** No more than **2 hours**
 **Goal:** Build a simple **TypeScript** React app that displays a category page of products, with **pagination**, **sorting**, **basic accessibility (ADA-friendly)**, and **mobile-first responsive design**, using any tooling you like. Feel free to use AI-driven code assistance (e.g. Copilot, ChatGPT) to speed things up.
 
-### 📋 Requirements
+### Requirements
 
 1. **Starter Data**
 
