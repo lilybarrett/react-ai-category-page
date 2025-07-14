@@ -1,88 +1,69 @@
-## Take-Home Assignment: “Category Page” React App
+# React + TypeScript + Vite
 
-**Timebox:** No more than **2 hours**
-**Goal:** Build a simple **TypeScript** React app that displays a category page of products, with **pagination**, **sorting**, **basic accessibility (ADA-friendly)**, and **mobile-first responsive design**, using any tooling you like. Feel free to use AI-driven code assistance (e.g. Copilot, ChatGPT) to speed things up.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-### Requirements
+Currently, two official plugins are available:
 
-1. **Starter Data**
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-   * We’ll include a `products.json` file (with 20 items) in the repo root for you to import.
-   * Each product entry has:
+## Expanding the ESLint configuration
 
-     ```ts
-     interface Product {
-       id: number;
-       name: string;
-       price: number;
-       imageUrl: string;
-     }
-     ```
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-2. **UI, Accessibility & Responsiveness**
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-   * **Category** page that:
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-     * Lists products in a grid or list.
-     * Shows `name`, `price`, and `image`.
-   * **Pagination**:
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-     * 5 items per page, with “Previous”/“Next” buttons (disabled at ends).
-     * Buttons must be keyboard-focusable and have ARIA labels.
-   * **Sorting**:
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-     * Control (dropdown/buttons) to sort by `price` (asc/desc) and `name` (A→Z/Z→A).
-     * Use semantic HTML and proper labels.
-   * **Images**:
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-     * Provide meaningful `alt` text.
-   * **Keyboard Navigation**:
-
-     * All interactive elements must be operable via keyboard.
-   * **Mobile-First Responsive Design**:
-
-     * Default styles for small screens, with enhancements at larger breakpoints.
-
-3. **Tech & Tooling**
-
-   * **TypeScript** + React (Create React App, Vite, or Next.js).
-   * **Styling (Required):** Use **Vanilla Extract** for all CSS.
-
-     * **Do not** use Tailwind, Bootstrap, or other utility/CSS frameworks.
-   * AI tools (Copilot/ChatGPT) are encouraged for boilerplate or logic.
-
-4. **Project Setup & Run**
-
-   * Provide a **README** with install (`npm install` / `yarn install`) and start (`npm start` / `yarn dev`) instructions.
-   * App must spin up locally with one command after install.
-
-5. **Deliverable**
-
-   * We’ll share a GitHub repo link for you to **fork** (includes `products.json`).
-   * Commit & push to your fork. Local run only—no deployment needed.
-
----
-
-## Evaluation Criteria
-
-| Area                             | What We’ll Look For                                                          |
-| -------------------------------- | ---------------------------------------------------------------------------- |
-| **Functionality**                | Pagination; sorting; keyboard & ARIA labels.                                 |
-| **Accessibility (ADA)**          | Semantic HTML; `alt` text; keyboard operability; ARIA attributes.            |
-| **Responsiveness**               | Mobile-first approach; smooth layout across breakpoints.                     |
-| **TypeScript Usage**             | Proper types/interfaces; no `any` hacks; clean TS idioms.                    |
-| **Styling with Vanilla Extract** | Effective use of Vanilla Extract for component styling; no other frameworks. |
-| **Code Quality**                 | Clean, modular, readable.                                                    |
-| **Project Setup**                | One-step install & run; clear README.                                        |
-| **Use of AI**                    | Judicious AI use to accelerate—not obscure your understanding.               |
-| **UX & Polish**                  | Consistent, accessible, and responsive design (doesn’t need to be fancy).    |
-
----
-
-> **Next steps (pairing session):**
->
-> 1. **Enhance the UI** (filters, modals, polish)
-> 2. **Deepen Accessibility** (focus management, landmarks, ARIA patterns)
-> 3. **Refactor for Scale** (state management, real data fetching)
-
-Feel free to review `products.json` and let us know if you have any questions before you start!
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
