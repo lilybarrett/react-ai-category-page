@@ -12,6 +12,8 @@ export const Button = ({
   ...rest
 }: globalTypes.ButtonProps) => {
 
+  // TODO In normal circumstances, we won't want to throttle *all* of our buttons
+  // let's extract this out to our onClick handlers so we have more control over when we do this
   const throttledClick = useMemo(
     () =>
       throttle(() => {
