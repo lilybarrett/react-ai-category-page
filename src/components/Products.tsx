@@ -62,6 +62,7 @@ export const Products = () => {
   }, [currentPage]);
 
   // TODO:
+  // Update ReadMe
   // Use aria-live=polite to announce changes in the product list when sorting or pagination changes
   // Switch between grid and list view automatically depending on screen size
   // Small screens
