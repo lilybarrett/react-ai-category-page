@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { style } from "@vanilla-extract/css";
 
 export const button = style({
   padding: "0.5rem 1rem",
@@ -9,13 +9,28 @@ export const button = style({
   fontWeight: 600,
 
   selectors: {
-    '&[aria-current="page"]': {
-      backgroundColor: "#000",
-      color: "#fff",
-    },
     "&:focus-visible": {
       outline: "2px solid blue",
       outlineOffset: "2px",
     },
+    // fallback for browsers that don't support focus-visible
+    // this will apply a focus style to all buttons, which is not ideal
+    // but ensures accessibility
+    "&:focus": {
+      outline: "2px solid blue",
+      outlineOffset: "2px",
+    },
   },
+});
+
+export const visuallyHiddenForAccessibility = style({
+  position: "absolute",
+  width: "1px",
+  height: "1px",
+  padding: "0",
+  margin: "-1px",
+  overflow: "hidden",
+  clip: "rect(0, 0, 0, 0)",
+  whiteSpace: "nowrap",
+  border: "0",
 });

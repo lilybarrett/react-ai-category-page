@@ -6,6 +6,8 @@ export const Pagination = ({
   currentPage,
   totalPages,
   onPageChange,
+  goToPreviousPage,
+  goToNextPage,
 }: PaginationProps) => {
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -14,12 +16,15 @@ export const Pagination = ({
   };
 
   return (
-    <nav aria-label="Pagination controls" className={paginationStyles.paginationNav}>
+    <nav
+      aria-label="Pagination controls"
+      className={paginationStyles.paginationNav}
+    >
       <ul className={paginationStyles.paginationList}>
         <li>
           <Button
             type="button"
-            onClick={() => handlePageChange(currentPage - 1)}
+            onClick={goToPreviousPage}
             disabled={currentPage === 1}
             ariaLabel="Go to previous page"
           >
@@ -34,7 +39,8 @@ export const Pagination = ({
                 type="button"
                 onClick={() => handlePageChange(page)}
                 ariaLabel={`Go to page ${page}`}
-                aria-current={currentPage === page ? 'page' : undefined}
+                className={paginationStyles.pageButton}
+                aria-current={currentPage === page ? "page" : undefined}
               >
                 {page}
               </Button>
@@ -44,7 +50,7 @@ export const Pagination = ({
         <li>
           <Button
             type="button"
-            onClick={() => handlePageChange(currentPage + 1)}
+            onClick={goToNextPage}
             disabled={currentPage === totalPages}
             ariaLabel="Go to next page"
           >

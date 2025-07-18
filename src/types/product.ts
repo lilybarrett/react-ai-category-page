@@ -22,3 +22,8 @@ export interface SortProps {
   sortOption: SortOptionType;
   handleSortChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
+
+export interface LayoutToggleProps {
+  toggleLayout: () => void;
+  layout: LayoutType;
+}

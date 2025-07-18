@@ -1,4 +1,5 @@
 import { style, styleVariants } from '@vanilla-extract/css';
+import * as globalStyles from './globals.css';
 
 export const container = style({
   padding: '1rem',
@@ -47,21 +48,9 @@ export const productPrice = style({
   fontSize: '1rem',
 });
 
-export const layoutToggleButton = style({
+export const layoutToggleButton = style([globalStyles.button, {
   marginBottom: '1rem',
-  padding: '0.5rem 1rem',
-  backgroundColor: '#f2f2f2',
-  border: '1px solid #ccc',
-  borderRadius: '4px',
-  cursor: 'pointer',
-  fontWeight: 600,
-  selectors: {
-    '&:focus-visible': {
-      outline: '2px solid blue',
-      outlineOffset: '2px',
-    },
-  },
-});
+}]);
 
 export const sortForm = style({
   display: 'flex',

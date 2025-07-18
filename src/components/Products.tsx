@@ -3,9 +3,11 @@ import * as productTypes from "../types/product";
 import { ProductCard } from "./ProductCard";
 import { Pagination } from "./Pagination";
 import * as productStyles from "../styles/products.css";
+import * as globalStyles from "../styles/globals.css";
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { Button } from "./Button";
-import { Sort, sortProducts } from "./Sort";
+import { Sort, sortProducts, sortOptionLabels } from "./Sort";
+import { LayoutToggle } from "./LayoutToggle";
 
 export const Products = () => {
   const [layout, setLayout] = useState<productTypes.LayoutType>("grid");
@@ -13,6 +15,14 @@ export const Products = () => {
   const [sortOption, setSortOption] = useState<productTypes.SortOptionType>(
     productTypes.SORT_OPTIONS.PRICE_ASC
   );
+
+  const PRODUCTS_PER_PAGE = 5;
+  const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
+  const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const currentProducts = useMemo(() => {
+    const sorted = sortProducts(products, sortOption);
+    return sorted.slice(start, start + PRODUCTS_PER_PAGE);
+  }, [products, sortOption, start]);
 
   // we're using useCallback since
   // toggleLayout is passed to the Button component and we want to avoid unnecessary re-renders
@@ -40,14 +50,13 @@ export const Products = () => {
     []
   );
 
-  const PRODUCTS_PER_PAGE = 5;
-  const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
-  const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const goToPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
 
-  const currentProducts = useMemo(() => {
-    const sorted = sortProducts(products, sortOption);
-    return sorted.slice(start, start + PRODUCTS_PER_PAGE);
-  }, [products, sortOption, start]);
+  const goToNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
   // Note: We don't technically need to memoize products here since it's hardcoded
   // but it's best practice to do so in case we later fetch products from an API
 
@@ -63,41 +72,41 @@ export const Products = () => {
 
   // TODO:
   // Update ReadMe
-  // Use aria-live=polite to announce changes in the product list when sorting or pagination changes
-  // Switch between grid and list view automatically depending on screen size
+  // Switch between grid and list view automatically depending on screen size (don't announce this change via aria-live)
+  // Add in automated tests for accessibility?
   // Small screens
-    // List view should be the default on smaller screens.
-    // Where should pagination and list view/sort buttons go on mobile, and how should they be styled?
-    // Expand size of product images to fill the width of the screen on small screens
+  // List view should be the default on smaller screens.
+  // Where should pagination and list view/sort buttons go on mobile, and how should they be styled?
+  // Expand size of product images to fill the width of the screen on small screens
 
   return (
     <main className={productStyles.container}>
       <section aria-label="Product view and sorting options">
-        <Button
-          onClick={toggleLayout}
-          ariaLabel={`Switch to ${
-            layout === productTypes.LAYOUT.GRID ? "list" : "grid"
-          } view`}
-          aria-pressed={layout === productTypes.LAYOUT.LIST}
-        >
-          {layout === productTypes.LAYOUT.GRID ? "List View" : "Grid View"}
-        </Button>
+        <LayoutToggle toggleLayout={toggleLayout} layout={layout} />
         <Sort sortOption={sortOption} handleSortChange={handleSortChange} />
       </section>
-      <header>
-        <h1>Products</h1>
-      </header>
-      <ul className={layoutStyles} role="list">
-        {currentProducts.map((product: productTypes.Product) => (
-          <li key={product.id}>
-            <ProductCard {...product} />
-          </li>
-        ))}
-      </ul>
+      <section>
+        <header>
+          <h1>Products</h1>
+        </header>
+        <ul
+          className={layoutStyles}
+          role="list"
+          aria-label="A list of products"
+        >
+          {currentProducts.map((product: productTypes.Product) => (
+            <li key={product.id}>
+              <ProductCard {...product} />
+            </li>
+          ))}
+        </ul>
+      </section>
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={setCurrentPage}
+        goToPreviousPage={goToPreviousPage}
+        goToNextPage={goToNextPage}
       />
     </main>
   );
