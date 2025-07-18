@@ -14,10 +14,10 @@ export function useIsMobile(query = tokenStyles.breakpoints.mobile) {
       clearTimeout(timeoutId);
       timeoutId = window.setTimeout(() => {
         setIsMobile(mediaQuery.matches);
-      }, 150); // Debounced by 150ms
+      }, 150);
     };
 
-    handleResize(); // Initial check
+    handleResize();
 
     mediaQuery.addEventListener("change", handleResize);
     return () => mediaQuery.removeEventListener("change", handleResize);

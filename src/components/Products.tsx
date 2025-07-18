@@ -43,9 +43,6 @@ export const Products = () => {
     return sorted.slice(start, start + PRODUCTS_PER_PAGE);
   }, [products, sortOption, start]);
 
-  // we're using useCallback since
-  // toggleLayout is passed to the Button component and we want to avoid unnecessary re-renders
-  // by ensuring the function reference remains stable across renders
   const toggleLayout = useCallback(() => {
     setLayout((prev) =>
       prev === layoutTypes.LAYOUT.GRID
@@ -78,12 +75,6 @@ export const Products = () => {
   }, [totalPages]);
   // Note: We don't technically need to memoize products here since it's hardcoded
   // but it's best practice to do so in case we later fetch products from an API
-
-  // If we were retrieving products from an API, we'd also want to handle the following:
-  // - Error handling (e.g., what if the API is down?)
-  // - Loading state (e.g., show a spinner while products are being fetched)
-  // - Fetching only a subset of products at a time in the pagination component
-  // - Caching (e.g., storing products in local storage or a global state management solution
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
