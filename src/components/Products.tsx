@@ -1,20 +1,39 @@
 import products from "../data/products.json";
 import * as productTypes from "../types/product";
+import * as layoutTypes from "../types/layout";
+import * as sortTypes from "../types/sort";
 import { ProductCard } from "./ProductCard";
 import { Pagination } from "./Pagination";
 import * as productStyles from "../styles/products.css";
-import * as globalStyles from "../styles/globals.css";
-import { useState, useEffect, useMemo, useCallback } from "react";
-import { Button } from "./Button";
-import { Sort, sortProducts, sortOptionLabels } from "./Sort";
+import * as tokenStyles from "../styles/tokens.css";
+import * as layoutStyles from "../styles/layout.css";
+import {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useCallback,
+} from "react";
+import { Sort, sortProducts } from "./Sort";
 import { LayoutToggle } from "./LayoutToggle";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 export const Products = () => {
-  const [layout, setLayout] = useState<productTypes.LayoutType>("grid");
+  const [layout, setLayout] = useState<layoutTypes.LayoutType>("grid");
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortOption, setSortOption] = useState<productTypes.SortOptionType>(
-    productTypes.SORT_OPTIONS.PRICE_ASC
+  const [sortOption, setSortOption] = useState<sortTypes.SortOptionType>(
+    sortTypes.SORT_OPTIONS.PRICE_ASC
   );
+  const isMobileView = useIsMobile(tokenStyles.breakpoints.mobile);
+
+  useLayoutEffect(() => {
+    const showListLayoutByDefault = isMobileView;
+    if (showListLayoutByDefault) {
+      setLayout(layoutTypes.LAYOUT.LIST);
+    } else {
+      setLayout(layoutTypes.LAYOUT.GRID);
+    }
+  }, []);
 
   const PRODUCTS_PER_PAGE = 5;
   const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
@@ -29,21 +48,21 @@ export const Products = () => {
   // by ensuring the function reference remains stable across renders
   const toggleLayout = useCallback(() => {
     setLayout((prev) =>
-      prev === productTypes.LAYOUT.GRID
-        ? productTypes.LAYOUT.LIST
-        : productTypes.LAYOUT.GRID
+      prev === layoutTypes.LAYOUT.GRID
+        ? layoutTypes.LAYOUT.LIST
+        : layoutTypes.LAYOUT.GRID
     );
   }, []);
 
-  const layoutStyles = useMemo(() => {
-    return layout === productTypes.LAYOUT.GRID
-      ? productStyles.layout.grid
-      : productStyles.layout.list;
+  const layoutView = useMemo(() => {
+    return layout === layoutTypes.LAYOUT.GRID
+      ? layoutStyles.layout.grid
+      : layoutStyles.layout.list
   }, [layout]);
 
   const handleSortChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const value = e.target.value as productTypes.SortOptionType;
+      const value = e.target.value as sortTypes.SortOptionType;
       setSortOption(value);
       setCurrentPage(1); // Reset to first page when sorting changes
     },
@@ -70,19 +89,19 @@ export const Products = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
-  // TODO:
-  // Update ReadMe
-  // Switch between grid and list view automatically depending on screen size (don't announce this change via aria-live)
-  // Add in automated tests for accessibility?
-  // Small screens
-  // List view should be the default on smaller screens.
-  // Where should pagination and list view/sort buttons go on mobile, and how should they be styled?
-  // Expand size of product images to fill the width of the screen on small screens
-
   return (
     <main className={productStyles.container}>
       <section aria-label="Product view and sorting options">
         <LayoutToggle toggleLayout={toggleLayout} layout={layout} />
+        {isMobileView && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+            goToPreviousPage={goToPreviousPage}
+            goToNextPage={goToNextPage}
+          />
+        )}
         <Sort sortOption={sortOption} handleSortChange={handleSortChange} />
       </section>
       <section>
@@ -90,7 +109,7 @@ export const Products = () => {
           <h1>Products</h1>
         </header>
         <ul
-          className={layoutStyles}
+          className={layoutView}
           role="list"
           aria-label="A list of products"
         >
@@ -101,13 +120,15 @@ export const Products = () => {
           ))}
         </ul>
       </section>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-        goToPreviousPage={goToPreviousPage}
-        goToNextPage={goToNextPage}
-      />
+      {!isMobileView && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          goToPreviousPage={goToPreviousPage}
+          goToNextPage={goToNextPage}
+        />
+      )}
     </main>
   );
 };
